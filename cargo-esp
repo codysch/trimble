@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+set -euf -o pipefail
 
 # WARNING: this is customized for the toolchain version & arch I happened to have installed
 
@@ -16,7 +17,7 @@ if command -v ccache; then
 	: ${HOST_CC:="ccache cc"}
 	export HOST_CC
 
-	export CMAKE="$(dirname "$0")/cmake-ccache"
+	export CMAKE="$(cd $(dirname "$0") && pwd)/cmake-ccache"
 fi
 
 exec cargo +esp "$@"
