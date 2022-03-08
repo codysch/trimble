@@ -1,0 +1,23 @@
+[package]
+name = "blueberry"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+esp-idf-sys = { version = "*", features = ["binstart", "native"] }
+esp-idf-svc = "*"
+esp-idf-hal = { git = "https://github.com/esp-rs/esp-idf-hal.git" }
+embedded-hal = "=1.0.0-alpha.7"
+anyhow = "*"
+log = "*"
+
+[build-dependencies]
+embuild = "*"
+
+[profile.release]
+debug = true
+opt-level = "s"
+
+[profile.dev]
+debug = true
+opt-level = "z"
