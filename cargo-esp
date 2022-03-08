@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+# WARNING: this is customized for the toolchain version & arch I happened to have installed
+
+# These 3 lines are printed by the install script
+export PATH="$HOME/.espressif/tools/xtensa-esp32-elf-clang/esp-13.0.0-20211203-x86_64-apple-darwin/bin/:$PATH"
+export LIBCLANG_PATH="$HOME/.espressif/tools/xtensa-esp32-elf-clang/esp-13.0.0-20211203-x86_64-apple-darwin/lib/"
+export PIP_USER=no
+
+# NOTE: Only makes sense on mac as a location. Linux would use `.cache` instead.
+export ESP_IDF_TOOLS_INSTALL_DIR="custom:$HOME/Library/Caches/espressif/esp-idf"
+
+# NOTE: I normally have this unconitionally
+if command -v ccache; then
+	# TODO: consider if we need to make this target-specific
+	: ${HOST_CC:="ccache cc"}
+	export HOST_CC
+
+	export CMAKE="$(dirname "$0")/cmake-ccache"
+fi
+
+exec cargo +esp "$@"
