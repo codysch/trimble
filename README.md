@@ -50,3 +50,14 @@ rustc-wrapper = "sccache"
 ```
 
 4. Run `../cargo-esp espflash --monitor --release` from any of the example directories
+
+## Crates that you may need to use to work with ESP32s3
+
+ - `esp-idf-hal` includes rust types and functions that allow access to
+   basic/typical peripherals on the esp32s3, like GPIO, SPI, etc. It impliments
+   traits in `embedded-hal`. Generic code (code that doesn't want to be
+   platform specific) can use `embedded-hal` traits and accept objects
+   implimenting those traits as inputs.
+ - `esp-idf-svc` provides
+ - `esp-idf-sys`: raw bindings to functions and types in the esp-idf. This
+   should be a last resort, instead use `esp-idf-svc` and `esp-idf-hal`
