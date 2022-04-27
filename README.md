@@ -42,7 +42,7 @@ cargo install ldproxy
 nix-env -i ccache sccache
 ```
 
-	Add this to your `~/.cargo/config.toml`
+Add this to your `~/.cargo/config.toml`
 
 ```
 [build]
